@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www-express"
+    "start": "nodemon ./bin/www-express.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -18,7 +18,9 @@
     "nodemon": "^1.17.1"
   },
   "nodemonConfig": {
-    "watch dir" : "/*",
-    "delay": "2500"
+    "watch dir" : "*",
+    "delay": "500",
+    "ignore": [".git/*", "node_modules/*"],
+    "ext" : "html,js,css,pug"
   }
 }
