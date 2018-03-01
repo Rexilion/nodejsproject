@@ -1,10 +1,11 @@
 const express = require('express');
-const app = express();
 const path = require('path');
 const bodyParser= require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 
+const app = express();
 app.use(bodyParser.urlencoded({extended: true}))
+app.set('view engine', 'ejs')
 
 var db;
 
@@ -25,11 +26,13 @@ MongoClient.connect('mongodb://127.0.0.1/crudapp', (err, client) => {
 //})
 
 app.get('/', (req, res) => {
-  db.collection('quotes').find().toArray(function(err, results) {
-    console.log(results);
+  db.collection('quotes').find().toArray(function(err, result) {
+    var render = path.resolve(__dirname + '/../views/index.ejs');
+    res.render(render, {quotes: result});
   });
-  var index = path.resolve(__dirname + '/../public/index.html');
-  res.sendFile(index);
+  //var index = path.resolve(__dirname + '/../public/index.html');
+  //res.sendFile(index);
+  
   // Note: __dirname is directory that contains the JavaScript source code. Try logging it and see what you get!
   // Mine was '/Users/zellwk/Projects/demo-repos/crud-express-mongo' for this app.
 });

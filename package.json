@@ -26,6 +26,6 @@
       ".git/*",
       "node_modules/*"
     ],
-    "ext": "html,js,css,pug"
+    "ext": "html,js,css,pug,ejs"
   }
 }
